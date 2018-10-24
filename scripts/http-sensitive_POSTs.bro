@@ -116,7 +116,7 @@ event http_end_entity(c: connection, is_orig: bool)
         {
 
 		local uentity = unescape_URI(POST_entities[c$uid]);
-		local message=fmt("Request: http://%s%s", c$http?$host ? c$http$host : addr_to_uri(c$id$orig_h), POST_requests[c$uid]);
+		local message=fmt("Request: %s - %s", c$http?$host ? c$http$host : addr_to_uri(c$id$orig_h), POST_requests[c$uid]);
 		if ( |uentity| <= BadPOSTLength && BadPOSTBody in uentity )
     		{
 		    	NOTICE([$note = HTTP::SensitivePOST, $conn = c, $msg = message ]);
